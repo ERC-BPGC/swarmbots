@@ -10,23 +10,44 @@ class World():
         self.num_obstacles = num_obstacles
         self.robots = []
         self.obstacles = []
-        fig, ax = plt.subplots()
-        self.plt_lim =100
+        # fig, ax = plt.subplots()
+        # self.plt_lim =100
+        # plt.xlim(0, self.plt_lim)
+        # plt.ylim(0, self.plt_lim)
+        # for i in range(num_obstacles):
+        #     obstacle = self.load_obstacle()
+        #     ax.add_patch(obstacle.obs_plt)
+        #     self.obstacles.append(obstacle)
+        # for _ in range(num_robots):
+        #     robot = self.load_robot()
+        #     ax.add_patch(robot.rob_plt)
+        #     self.robots.append(robot)
+        # plt.gca().set_aspect('equal', adjustable='box')
+        # plt.xlabel('X')
+        # plt.ylabel('Y')
+        # plt.title('APF')
+        # plt.show()
+    def initiate_world(self,plt_lim):
+        self.plt_lim = plt_lim
+        self.fig, self.ax = plt.subplots()
         plt.xlim(0, self.plt_lim)
         plt.ylim(0, self.plt_lim)
-        for i in range(num_obstacles):
+        for i in range(self.num_obstacles):
             obstacle = self.load_obstacle()
-            ax.add_patch(obstacle.obs_plt)
+            self.ax.add_patch(obstacle.obs_plt)
             self.obstacles.append(obstacle)
-        for _ in range(num_robots):
+        for _ in range(self.num_robots):
             robot = self.load_robot()
-            ax.add_patch(robot.rob_plt)
+            self.ax.add_patch(robot.rob_plt)
             self.robots.append(robot)
         plt.gca().set_aspect('equal', adjustable='box')
         plt.xlabel('X')
         plt.ylabel('Y')
         plt.title('APF')
         plt.show()
+    def update_world(self):
+        pass
+
     def load_obstacle(self):
         bool = False 
         side_length = 7
@@ -56,7 +77,6 @@ class World():
         while bool is False:
             x0 = random.uniform(r,self.plt_lim-r) 
             y0 = random.uniform(r,self.plt_lim-r)
-            print("here")
             x1 = x0 - r 
             y1 = y0 - r
             x2 = x0 + r
