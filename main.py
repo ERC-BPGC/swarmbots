@@ -1,3 +1,3 @@
-from envs.world import World
+from simulations.simulate import Simulate
 
-World(45,0)
+Simulate()
